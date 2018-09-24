@@ -4,15 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using VideoLine.Models;
 
 namespace VideoLine.Tests
 {
-    public class TestNunit
+    public class BasketTests
     {
         [Test]
-        public void TestIfNunitWorks()
+        public void ShouldCreateEmptyBasket()
         {
-            Assert.True(false);
+            var basket = new Basket();
+
+            Assert.AreEqual(0, basket.Count());
         }
     }
 }
