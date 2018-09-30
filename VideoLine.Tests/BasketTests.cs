@@ -17,5 +17,15 @@ namespace VideoLine.Tests
 
             Assert.AreEqual(0, basket.Count());
         }
+
+        [Test]
+        public void ShouldReturnBasketCountWhenOneCourseAdded()
+        {
+            var basket = new Basket();
+
+            basket.Add(new Course());
+
+            Assert.AreEqual(1, basket.Count());
+        }
     }
 }

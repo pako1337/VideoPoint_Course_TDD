@@ -11,5 +11,9 @@ namespace VideoLine.Models
         {
             return 0;
         }
+
+        public void Add(Course course)
+        {
+        }
     }
 }
