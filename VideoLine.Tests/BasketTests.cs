@@ -39,5 +39,18 @@ namespace VideoLine.Tests
 
             Assert.AreEqual(0, basket.Count());
         }
+
+        [Test]
+        public void ShouldReturnSummaryWithCourses()
+        {
+            var basket = new Basket();
+
+            basket.Add(new Course() { Title = "Test 1" });
+
+            var summary = basket.RenderSummary();
+
+            Assert.AreEqual(1, summary.Count);
+            Assert.AreEqual("Test 1", summary.Courses.First().Title);
+        }
     }
 }

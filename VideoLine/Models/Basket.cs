@@ -23,5 +23,10 @@ namespace VideoLine.Models
         {
             _basketCount--;
         }
+
+        public BasketSummary RenderSummary()
+        {
+            return new BasketSummary();
+        }
     }
 }

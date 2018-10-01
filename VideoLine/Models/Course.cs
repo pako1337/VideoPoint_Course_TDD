@@ -7,5 +7,6 @@ namespace VideoLine.Models
 {
     public class Course
     {
+        public string Title { get; set; }
     }
 }
