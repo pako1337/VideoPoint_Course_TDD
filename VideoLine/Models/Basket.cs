@@ -18,5 +18,10 @@ namespace VideoLine.Models
         {
             _basketCount++;
         }
+
+        public void Remove(Course course)
+        {
+            _basketCount--;
+        }
     }
 }

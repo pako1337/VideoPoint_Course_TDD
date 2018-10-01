@@ -27,5 +27,17 @@ namespace VideoLine.Tests
 
             Assert.AreEqual(1, basket.Count());
         }
+
+        [Test]
+        public void ShouldRemoveCourseFromBasketAndDecreaseCount()
+        {
+            var basket = new Basket();
+
+            Course course = new Course();
+            basket.Add(course);
+            basket.Remove(course);
+
+            Assert.AreEqual(0, basket.Count());
+        }
     }
 }
