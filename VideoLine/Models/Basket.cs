@@ -7,13 +7,16 @@ namespace VideoLine.Models
 {
     public class Basket
     {
+        private int _basketCount = 0;
+
         public int Count()
         {
-            return 0;
+            return _basketCount;
         }
 
         public void Add(Course course)
         {
+            _basketCount = 1;
         }
     }
 }
