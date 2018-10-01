@@ -16,7 +16,7 @@ namespace VideoLine.Models
 
         public void Add(Course course)
         {
-            _basketCount = 1;
+            _basketCount++;
         }
     }
 }
