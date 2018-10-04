@@ -32,7 +32,8 @@ namespace VideoLine.Models
             return new BasketSummary()
             {
                 Count = _courses.Count,
-                Courses = _courses.ToArray()
+                Courses = _courses.ToArray(),
+                TotalPrice = _courses.Sum(c => c.NetPrice)
             };
         }
     }

@@ -11,19 +11,41 @@ namespace VideoLine.Tests
 {
     public class BasketTests
     {
+        private Basket basket;
+
+        [SetUp]
+        public void Setup()
+        {
+            basket = new Basket();
+        }
+
+        [TearDown]
+        public void Teardown()
+        {
+
+        }
+
+        [OneTimeSetUp]
+        public void FixtureSetup()
+        {
+
+        }
+
+        [OneTimeTearDown]
+        public void FixtureTeardown()
+        {
+
+        }
+
         [Test]
         public void ShouldCreateEmptyBasket()
         {
-            var basket = new Basket();
-
             Assert.AreEqual(0, basket.Count());
         }
 
         [Test]
         public void ShouldReturnBasketCountWhenOneCourseAdded()
         {
-            var basket = new Basket();
-
             basket.Add(new Course());
 
             Assert.AreEqual(1, basket.Count());
@@ -32,8 +54,6 @@ namespace VideoLine.Tests
         [Test]
         public void ShouldRemoveCourseFromBasketAndDecreaseCount()
         {
-            var basket = new Basket();
-
             Course course = new Course();
             basket.Add(course);
             basket.Remove(course);
@@ -44,8 +64,6 @@ namespace VideoLine.Tests
         [Test]
         public void ShouldReturnSummaryWithCourses()
         {
-            var basket = new Basket();
-
             basket.Add(new Course() { Title = "Test 1" });
 
             var summary = basket.RenderSummary();
@@ -57,8 +75,6 @@ namespace VideoLine.Tests
         [Test]
         public void ShouldReturnSummaryWithoutCoursesAfterCourseRemoval()
         {
-            var basket = new Basket();
-
             Course course = new Course() { Title = "Test 1" };
             basket.Add(course);
             basket.Remove(course);
@@ -72,9 +88,20 @@ namespace VideoLine.Tests
         [Test]
         public void ShouldNotAcceptNullAsCourse()
         {
+            Assert.Throws<ArgumentNullException>(() => basket.Add(null));
+        }
+
+        [Test]
+        public void ShouldReturnFullBasketPrice()
+        {
             var basket = new Basket();
 
-            Assert.Throws<ArgumentNullException>(() => basket.Add(null));
+            var course = new Course() { NetPrice = 10.0m };
+            basket.Add(course);
+
+            var summary = basket.RenderSummary();
+
+            summary.TotalPrice.ShouldEqual(10.0m);
         }
     }
 }
