@@ -67,9 +67,14 @@ namespace VideoLine.Tests
 
             Assert.AreEqual(0, summary.Count);
             Assert.IsEmpty(summary.Courses);
+        }
 
-            summary.Count.ShouldEqual(1);
-            summary.Courses.ShouldBeEmpty();
+        [Test]
+        public void ShouldNotAcceptNullAsCourse()
+        {
+            var basket = new Basket();
+
+            Assert.Throws<ArgumentNullException>(() => basket.Add(null));
         }
     }
 }

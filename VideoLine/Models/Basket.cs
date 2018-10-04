@@ -16,6 +16,9 @@ namespace VideoLine.Models
 
         public void Add(Course course)
         {
+            if (course == null)
+                throw new ArgumentNullException("course");
+
             _courses.Add(course);
         }
 
