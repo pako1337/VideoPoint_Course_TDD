@@ -5,9 +5,9 @@ using System.Web;
 
 namespace VideoLine.Models
 {
-    public class Course
+    public enum TaxLocation
     {
-        public string Title { get; set; }
-        public decimal NetPrice { get; set; }
+        None = 0,
+        Pl = 1,
     }
 }

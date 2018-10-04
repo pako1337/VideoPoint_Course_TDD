@@ -6,5 +6,6 @@ namespace VideoLine.Models
     {
         public int Count { get; set; }
         public IEnumerable<Course> Courses { get; set; }
+        public object TotalPrice { get; set; }
     }
 }

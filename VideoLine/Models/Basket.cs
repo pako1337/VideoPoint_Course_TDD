@@ -8,6 +8,12 @@ namespace VideoLine.Models
     public class Basket
     {
         private List<Course> _courses = new List<Course>();
+        private TaxLocation taxLocation;
+
+        public Basket(TaxLocation taxLocation)
+        {
+            this.taxLocation = taxLocation;
+        }
 
         public int Count()
         {
@@ -29,11 +35,15 @@ namespace VideoLine.Models
 
         public BasketSummary RenderSummary()
         {
+            decimal totalPrice = _courses.Sum(c => c.NetPrice);
+            TaxCalculator calculator = new TaxCalculator();
+            totalPrice = calculator.IncludeTaxPrice(totalPrice, taxLocation);
+
             return new BasketSummary()
             {
                 Count = _courses.Count,
                 Courses = _courses.ToArray(),
-                TotalPrice = _courses.Sum(c => c.NetPrice)
+                TotalPrice = totalPrice
             };
         }
     }

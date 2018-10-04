@@ -16,7 +16,7 @@ namespace VideoLine.Tests
         [SetUp]
         public void Setup()
         {
-            basket = new Basket();
+            basket = new Basket(TaxLocation.None);
         }
 
         [TearDown]
@@ -94,14 +94,25 @@ namespace VideoLine.Tests
         [Test]
         public void ShouldReturnFullBasketPrice()
         {
-            var basket = new Basket();
-
             var course = new Course() { NetPrice = 10.0m };
             basket.Add(course);
 
             var summary = basket.RenderSummary();
 
             summary.TotalPrice.ShouldEqual(10.0m);
+        }
+
+        [Test]
+        public void ShouldReturnFullBasketPriceWithPlTaxIncluded()
+        {
+            var basket = new Basket(TaxLocation.Pl);
+
+            var course = new Course() { NetPrice = 10.0m };
+            basket.Add(course);
+
+            var summary = basket.RenderSummary();
+
+            summary.TotalPrice.ShouldEqual(12.3m);
         }
     }
 }

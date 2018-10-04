@@ -149,6 +149,8 @@
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\BasketSummary.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\TaxCalculator.cs" />
+    <Compile Include="Models\TaxLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
