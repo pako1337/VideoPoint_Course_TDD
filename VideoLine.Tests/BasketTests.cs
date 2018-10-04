@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Should;
 using VideoLine.Models;
 
 namespace VideoLine.Tests
@@ -51,6 +52,24 @@ namespace VideoLine.Tests
 
             Assert.AreEqual(1, summary.Count);
             Assert.AreEqual("Test 1", summary.Courses.First().Title);
+        }
+
+        [Test]
+        public void ShouldReturnSummaryWithoutCoursesAfterCourseRemoval()
+        {
+            var basket = new Basket();
+
+            Course course = new Course() { Title = "Test 1" };
+            basket.Add(course);
+            basket.Remove(course);
+
+            var summary = basket.RenderSummary();
+
+            Assert.AreEqual(0, summary.Count);
+            Assert.IsEmpty(summary.Courses);
+
+            summary.Count.ShouldEqual(1);
+            summary.Courses.ShouldBeEmpty();
         }
     }
 }

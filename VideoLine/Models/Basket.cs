@@ -7,26 +7,30 @@ namespace VideoLine.Models
 {
     public class Basket
     {
-        private int _basketCount = 0;
+        private List<Course> _courses = new List<Course>();
 
         public int Count()
         {
-            return _basketCount;
+            return _courses.Count;
         }
 
         public void Add(Course course)
         {
-            _basketCount++;
+            _courses.Add(course);
         }
 
         public void Remove(Course course)
         {
-            _basketCount--;
+            _courses.Remove(course);
         }
 
         public BasketSummary RenderSummary()
         {
-            return new BasketSummary();
+            return new BasketSummary()
+            {
+                Count = _courses.Count,
+                Courses = _courses.ToArray()
+            };
         }
     }
 }
