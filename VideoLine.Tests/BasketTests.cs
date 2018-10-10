@@ -16,7 +16,7 @@ namespace VideoLine.Tests
         [SetUp]
         public void Setup()
         {
-            basket = new Basket(TaxLocation.None);
+            basket = new Basket(TaxLocation.None, new DateTimeProvider());
         }
 
         [TearDown]
@@ -105,7 +105,7 @@ namespace VideoLine.Tests
         [Test]
         public void ShouldReturnFullBasketPriceWithPlTaxIncluded()
         {
-            var basket = new Basket(TaxLocation.Pl);
+            var basket = new Basket(TaxLocation.Pl, new DateTimeProvider());
 
             var course = new Course() { NetPrice = 10.0m };
             basket.Add(course);
@@ -118,21 +118,22 @@ namespace VideoLine.Tests
         [Test]
         public void ShouldLowerPrices10PercentBetweenNoonAnd2Pm()
         {
-            var basket = new Basket(TaxLocation.None);
+            var timeProvider = new TestDateTimeProvider();
+            var basket = new Basket(TaxLocation.None, timeProvider);
 
             var course = new Course() { NetPrice = 10m };
             basket.Add(course);
 
+            timeProvider.Now = new DateTime(2018, 10, 10, 12, 1, 0);
+
             var summary = basket.RenderSummary();
 
-            if (DateTime.Now > DateTime.Today.AddHours(12) && DateTime.Now < DateTime.Today.AddHours(14))
-            {
-                summary.TotalPrice.ShouldEqual(9m);
-            }
-            else
-            {
-                summary.TotalPrice.ShouldEqual(10m);
-            }
+            summary.TotalPrice.ShouldEqual(9m);
+        }
+
+        private class TestDateTimeProvider : IDateTimeProvider
+        {
+            public DateTime Now { get; set; }
         }
     }
 }
