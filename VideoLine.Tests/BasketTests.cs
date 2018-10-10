@@ -114,5 +114,25 @@ namespace VideoLine.Tests
 
             summary.TotalPrice.ShouldEqual(12.3m);
         }
+
+        [Test]
+        public void ShouldLowerPrices10PercentBetweenNoonAnd2Pm()
+        {
+            var basket = new Basket(TaxLocation.None);
+
+            var course = new Course() { NetPrice = 10m };
+            basket.Add(course);
+
+            var summary = basket.RenderSummary();
+
+            if (DateTime.Now > DateTime.Today.AddHours(12) && DateTime.Now < DateTime.Today.AddHours(14))
+            {
+                summary.TotalPrice.ShouldEqual(9m);
+            }
+            else
+            {
+                summary.TotalPrice.ShouldEqual(10m);
+            }
+        }
     }
 }
