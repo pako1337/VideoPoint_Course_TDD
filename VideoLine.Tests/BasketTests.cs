@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Moq;
 using NUnit.Framework;
 using Should;
 using VideoLine.Models;
@@ -118,22 +119,17 @@ namespace VideoLine.Tests
         [Test]
         public void ShouldLowerPrices10PercentBetweenNoonAnd2Pm()
         {
-            var timeProvider = new TestDateTimeProvider();
-            var basket = new Basket(TaxLocation.None, timeProvider);
+            var timeProvider = new Mock<IDateTimeProvider>();
+            var basket = new Basket(TaxLocation.None, timeProvider.Object);
 
             var course = new Course() { NetPrice = 10m };
             basket.Add(course);
 
-            timeProvider.Now = new DateTime(2018, 10, 10, 12, 1, 0);
+            timeProvider.Setup(t => t.Now).Returns(new DateTime(2018, 10, 10, 13, 0, 0));
 
             var summary = basket.RenderSummary();
 
             summary.TotalPrice.ShouldEqual(9m);
-        }
-
-        private class TestDateTimeProvider : IDateTimeProvider
-        {
-            public DateTime Now { get; set; }
         }
     }
 }
