@@ -103,17 +103,27 @@ namespace VideoLine.Tests
             summary.TotalPrice.ShouldEqual(10.0m);
         }
 
-        [Test]
-        public void ShouldReturnFullBasketPriceWithPlTaxIncluded()
+        [TestCaseSource(nameof(TaxBasketPriceTestCases))]
+        public void ShouldReturnFullBasketPriceWithTaxIncluded(TaxLocation taxLocation, decimal expectedTotalPrice)
         {
-            var basket = new Basket(TaxLocation.Pl, new DateTimeProvider());
+            var basket = new Basket(taxLocation, new DateTimeProvider());
 
             var course = new Course() { NetPrice = 10.0m };
             basket.Add(course);
 
             var summary = basket.RenderSummary();
 
-            summary.TotalPrice.ShouldEqual(12.3m);
+            summary.TotalPrice.ShouldEqual(expectedTotalPrice);
+        }
+
+        public static object[] TaxBasketPriceTestCases()
+        {
+            return new object[]
+            {
+                new object[] { TaxLocation.Pl, 12.3m },
+                new object[] { TaxLocation.None, 10.0m},
+                new object[] { TaxLocation.Usa, 11.0m},
+            };
         }
 
         [Test]

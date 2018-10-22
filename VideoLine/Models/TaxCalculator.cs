@@ -11,6 +11,8 @@ namespace VideoLine.Models
         {
             if (taxLocation == TaxLocation.Pl)
                 totalPrice = totalPrice * 1.23m;
+            else if (taxLocation == TaxLocation.Usa)
+                totalPrice = totalPrice * 1.1m;
             return totalPrice;
         }
     }

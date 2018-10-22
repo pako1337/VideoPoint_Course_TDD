@@ -9,5 +9,6 @@ namespace VideoLine.Models
     {
         None = 0,
         Pl = 1,
+        Usa = 2,
     }
 }
