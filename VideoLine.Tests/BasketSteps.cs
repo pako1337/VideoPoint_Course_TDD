@@ -23,9 +23,9 @@ namespace VideoLine.Tests
         }
         
         [Then(@"there should be (.*) item in basket")]
-        public void ThenThereShouldBeItemInBasket(int p0)
+        public void ThenThereShouldBeItemInBasket(int expectedBasketCount)
         {
-            basket.Count().ShouldEqual(1);
+            basket.Count().ShouldEqual(expectedBasketCount);
         }
     }
 }
