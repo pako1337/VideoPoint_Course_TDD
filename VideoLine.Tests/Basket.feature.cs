@@ -72,11 +72,11 @@ namespace VideoLine.Tests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add course to basket")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("AddingToBasket")]
         public virtual void AddCourseToBasket()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add course to basket", null, new string[] {
-                        "mytag"});
+                        "AddingToBasket"});
 #line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
@@ -92,19 +92,21 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add multiple courses to basket")]
+        [NUnit.Framework.CategoryAttribute("AddingToBasket")]
         public virtual void AddMultipleCoursesToBasket()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add multiple courses to basket", null, ((string[])(null)));
-#line 12
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add multiple courses to basket", null, new string[] {
+                        "AddingToBasket"});
+#line 13
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 13
- testRunner.Given("empty basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
- testRunner.When("I add course to basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("empty basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 15
- testRunner.And("I add course to basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("I add course to basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
+ testRunner.And("I add course to basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
  testRunner.Then("there should be 2 item in basket", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

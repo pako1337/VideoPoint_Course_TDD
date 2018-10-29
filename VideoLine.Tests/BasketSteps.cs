@@ -5,7 +5,7 @@ using VideoLine.Models;
 
 namespace VideoLine.Tests
 {
-    [Binding]
+    [Binding, Scope(Tag = "AddingToBasket")]
     public class BasketSteps
     {
         private Basket basket;
